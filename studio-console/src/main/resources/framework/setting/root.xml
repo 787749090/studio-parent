@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+	
+	<!-- enable autowire -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.free.studio.framework"
+							name-generator="com.free.studio.framework.core.context.BaseBeanNameGenerator" />
+	<!-- 初始化变量 -->
+	<bean name="Environment" class="com.free.studio.framework.core.Environment">
+		<constructor-arg index="0" value="root"></constructor-arg>
+		<constructor-arg index="1" value="3.0"></constructor-arg>
+	</bean>
+	
+	<!-- 用户上下文件的管理器 -->
+	<bean name="userContextFactory" class="com.free.studio.framework.core.security.SimpleUserContextFactory"></bean>
+	<!-- 多语言的加载 
+	<bean class="com.free.studio.framework.core.i18n.FixedLocaleResolver">
+		<property name="fixedLoacle">
+			<bean class="java.util.Locale">
+				<constructor-arg><value>zh</value> </constructor-arg>
+				<constructor-arg><value>CN</value> </constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	-->
+	<!-- 默认为英文 
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale">
+			<bean class="java.util.Locale">
+				<constructor-arg><value>en</value> </constructor-arg>
+				<constructor-arg><value>US</value> </constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	-->
+	<!-- spring 国际化配置 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">                
+		<property name="basenames">   
+			<list>
+				<value>i18n.root.ui.root</value>
+				<value>i18n.root.validation.common</value>
+				<value>i18n.root.info.common</value>
+				<value>i18n.root.errors.errors</value>
+			</list>
+		</property>               
+	</bean>
+	<!--  组件注册区  -->
+	<bean name="templateService" class="com.free.studio.framework.core.components.builtin.template.FreeMarkerTemplateService">
+		<property name="freeMarkerConfigurer">
+			<bean name="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer" scope="singleton">
+				<property name="templateLoaderPaths">
+					<array>
+						<value>classpath:templates/</value>
+						<value>templates/</value>
+					</array>
+				</property>
+				<property name="freemarkerSettings">
+					<props>
+						<!-- 20120626.1   Simon 这里Debug版本，才使用每次都加载！！压力测试时，需要优化！！  -->
+						<prop key="template_update_delay">2</prop>
+						<prop key="default_encoding">UTF-8</prop>
+					</props>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!-- 接口服务
+	<bean class="com.free.studio.framework.core.modular.DefaultInterfaceServiceImpl" scope="prototype">
+		<property name="interfaceDependOnRegistry" ref="interfaceDependOnRegistry"></property>
+	</bean>
+	
+	<bean name="interfaceDependOnRegistry" class="com.free.studio.framework.core.modular.InterfaceDependOnRegistry">
+	</bean>
+	 -->
+</beans>

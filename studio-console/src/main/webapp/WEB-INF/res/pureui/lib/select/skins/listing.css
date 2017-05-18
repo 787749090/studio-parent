@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+*{ padding:0; margin:0;}
+img{ border:none;}
+.sel_con{position:absolute; z-index:1000; top:22px;left:0px; display: none; height:100px;line-height:100px;overflow:auto;overflow-x:hidden; border:#c8c8c8 1px solid;
+		scrollbar-3dlight-color:#999;
+         scrollbar-highlight-color:#ccc;
+         scrollbar-face-color:#eee;
+         scrollbar-arrow-color:#666;
+         scrollbar-shadow-color:#666;
+         scrollbar-darkshadow-color:#999;
+         scrollbar-track-color:#ddd;
+		 background:#ccc;
+		 }
+.sel_con ul{ list-style:none;border:1px solid #d8d8d8 ; border-top:none; background:#eee;}
+.sel_con_li{ padding:0 10px;height:24px; line-height:24px; background:#fff; cursor:pointer; color:#666; border-bottom:#eee 1px solid;}
+.sel_con_on{ padding:0 10px;height:24px; line-height:24px; background:#eee; cursor:pointer; color:#666; border-bottom:#eee 1px solid;}
+.contron-div i{ width:5px; height:22px; background:url(images/select_lt.gif) left no-repeat; float:left;}
+.sns-select{ height:22px; float:left; cursor:pointer; background:url(images/select_rt.gif) right no-repeat; padding-left:0; line-height:21px; color:#000000; border:none;}
+

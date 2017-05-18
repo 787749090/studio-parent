@@ -1,0 +1,19 @@
+
+3.0.4
+	添加WebInterceptor功能，替代全局的Servlet功能。
+	为Ajax转换特别异常提示信息
+	system_error.jsp修复homepage为null的路径问题，以及jsp异常的无限循环问题
+3.0.3
+	修改context-tx.xml，所有方法都是REQUIRED
+	添加context-web.xml文件
+	找不到模块不再转到RootDispatcher，而是采用NoneDispatcher(即不作特别处理)
+	新增DenyDispatcher,HaltDispatcher
+3.0.2
+	SpringDispatcher时，支持参数名前缀(采用注解ParamPrefix)
+3.0.1
+	统一Properties文件及覆盖规则。模块使用 {模块名}/module.properties
+3.0.0
+	重构转发器，支持SpringMVC。每个模块都可自己配置对应的MVC方案
+2.0.1 (20130108)
+	add oracle dialect
+

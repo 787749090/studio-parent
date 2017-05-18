@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+         "http://struts.apache.org/dtds/struts-2.3.dtd">
+  <!-- 
+  <!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+   -->
+<struts>
+	<bean type="com.opensymphony.xwork2.ObjectFactory" name="sns" class="com.free.studio.framework.core.web.StrutsSpringObjectFactory" />
+    
+    <!--  Make the Spring object factory the automatic default -->
+    <constant name="struts.objectFactory" value="sns" />
+		<!-- 后缀名 	-->
+	<constant name="struts.action.extension" value="shtml"></constant>
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<!-- i18n 国际化配置文件 
+	<constant name="struts.custom.i18n.resources" value="i18n.system.system"></constant>
+	-->  
+	<!-- i18n 国际化配置文件 	-->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!-- 此处引入Struts.xml资源文件 -->
+	
+	<include file="sns-default.xml"></include>
+	<!-- console与一些模块冲突了
+   <package name="console" extends="sns-default" namespace="/">
+	</package>-->
+   <package name="core" extends="sns-default" namespace="/">
+    	<action name="rpcServer" class="/rpcServer" method="invoke">
+           <result name="success" type="httpheader"></result>
+       </action>
+	</package>
+</struts>
